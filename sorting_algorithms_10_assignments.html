@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sorting Algorithms - 10 Assignments</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:#f6f8fb;color:#182033}
+header{background:#fff;border-bottom:1px solid #dfe5ee;padding:18px 24px;position:sticky;top:0;z-index:10}
+.wrap{max-width:1050px;margin:auto}
+h1{margin:0;font-size:28px}
+.sub{color:#667085;margin-top:6px}
+main{max-width:1050px;margin:26px auto;padding:0 16px 70px}
+.assignment{background:#fff;border:1px solid #dfe5ee;border-radius:18px;padding:22px;margin:18px 0}
+.badge{display:inline-block;background:#eef2ff;color:#3457d5;padding:6px 10px;border-radius:20px;font-weight:800;font-size:14px}
+h2{font-size:25px;margin:12px 0 10px}
+p,li{font-size:18px;line-height:1.55}
+.section{background:#f9fbfd;border-radius:12px;padding:14px 16px;margin:12px 0}
+.code{background:#111722;color:#eef3ff;border-radius:14px;padding:17px;font:16px/1.5 Consolas,monospace;white-space:pre-wrap;overflow:auto}
+button{border:0;border-radius:10px;padding:11px 17px;font-size:15px;font-weight:800;cursor:pointer;margin-right:8px}
+.hintBtn{background:#fff4dc;color:#8a5c00;border:1px solid #eed39a}
+.solBtn{background:#3457d5;color:white}
+.hidden{display:none;margin-top:12px}
+.expected{color:#23865f;font-weight:800}
+@media(max-width:650px){h1{font-size:23px}h2{font-size:21px}p,li{font-size:16px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>Sorting Algorithms — 10 Practice Assignments</h1>
+    <div class="sub">Bubble Sort • Selection Sort • Insertion Sort</div>
+  </div>
+</header>
+
+<main>
+
+<div class="assignment">
+  <span class="badge">Assignment 1 — Bubble Sort</span>
+  <h2>Sort Student Marks in Ascending Order</h2>
+  <div class="section"><b>Problem:</b><br>Given student marks, sort them from lowest to highest using Bubble Sort.</div>
+  <div class="section"><b>Sample Input:</b><br>[72, 45, 88, 61, 39]</div>
+  <div class="section"><b>Task:</b><br>Write Bubble Sort manually. Do not use <code>sort()</code> or <code>sorted()</code>.</div>
+  <div class="section expected"><b>Expected Output:</b><br>[39, 45, 61, 72, 88]</div>
+  <button class="hintBtn" onclick="toggle('h1')">Show Hint</button>
+  <button class="solBtn" onclick="toggle('s1')">Show Solution</button>
+  <div id="h1" class="hidden section">Compare adjacent values and swap when the left value is greater than the right value.</div>
+  <div id="s1" class="hidden code">marks = [72, 45, 88, 61, 39]
+
+for i in range(len(marks) - 1):
+    for j in range(len(marks) - 1 - i):
+        if marks[j] > marks[j + 1]:
+            marks[j], marks[j + 1] = marks[j + 1], marks[j]
+
+print(marks)</div>
+</div>
+
+<div class="assignment">
+  <span class="badge">Assignment 2 — Bubble Sort</span>
+  <h2>Sort Product Prices in Descending Order</h2>
+  <div class="section"><b>Problem:</b><br>An online store wants to display the most expensive product first.</div>
+  <div class="section"><b>Sample Input:</b><br>[499, 1299, 799, 2499, 999]</div>
+  <div class="section"><b>Task:</b><br>Use Bubble Sort to arrange prices from highest to lowest.</div>
+  <div class="section expected"><b>Expected Output:</b><br>[2499, 1299, 999, 799, 499]</div>
+  <button class="hintBtn" onclick="toggle('h2')">Show Hint</button>
+  <button class="solBtn" onclick="toggle('s2')">Show Solution</button>
+  <div id="h2" class="hidden section">For descending order, swap when the left value is smaller than the right value.</div>
+  <div id="s2" class="hidden code">prices = [499, 1299, 799, 2499, 999]
+
+for i in range(len(prices) - 1):
+    for j in range(len(prices) - 1 - i):
+        if prices[j] < prices[j + 1]:
+            prices[j], prices[j + 1] = prices[j + 1], prices[j]
+
+print(prices)</div>
+</div>
+
+<div class="assignment">
+  <span class="badge">Assignment 3 — Bubble Sort</span>
+  <h2>Optimized Bubble Sort with Early Stop</h2>
+  <div class="section"><b>Problem:</b><br>A list may already be sorted. Avoid unnecessary passes.</div>
+  <div class="section"><b>Sample Input:</b><br>[10, 20, 30, 40, 50]</div>
+  <div class="section"><b>Task:</b><br>Add a <code>swapped</code> flag and stop when no swap occurs.</div>
+  <div class="section expected"><b>Expected Output:</b><br>[10, 20, 30, 40, 50]</div>
+  <button class="hintBtn" onclick="toggle('h3')">Show Hint</button>
+  <button class="solBtn" onclick="toggle('s3')">Show Solution</button>
+  <div id="h3" class="hidden section">Set <code>swapped = False</code> at the start of each pass.</div>
+  <div id="s3" class="hidden code">data = [10, 20, 30, 40, 50]
+
+for i in range(len(data) - 1):
+    swapped = False
+
+    for j in range(len(data) - 1 - i):
+        if data[j] > data[j + 1]:
+            data[j], data[j + 1] = data[j + 1], data[j]
+            swapped = True
+
+    if not swapped:
+        break
+
+print(data)</div>
+</div>
+
+<div class="assignment">
+  <span class="badge">Assignment 4 — Selection Sort</span>
+  <h2>Sort Employee Salaries</h2>
+  <div class="section"><b>Problem:</b><br>HR wants salary values arranged from lowest to highest.</div>
+  <div class="section"><b>Sample Input:</b><br>[42000, 28000, 55000, 31000, 47000]</div>
+  <div class="section"><b>Task:</b><br>Use Selection Sort and track the minimum index.</div>
+  <div class="section expected"><b>Expected Output:</b><br>[28000, 31000, 42000, 47000, 55000]</div>
+  <button class="hintBtn" onclick="toggle('h4')">Show Hint</button>
+  <button class="solBtn" onclick="toggle('s4')">Show Solution</button>
+  <div id="h4" class="hidden section">For every pass, start with <code>min_index = i</code>.</div>
+  <div id="s4" class="hidden code">salary = [42000, 28000, 55000, 31000, 47000]
+
+for i in range(len(salary) - 1):
+    min_index = i
+
+    for j in range(i + 1, len(salary)):
+        if salary[j] < salary[min_index]:
+            min_index = j
+
+    salary[i], salary[min_index] = salary[min_index], salary[i]
+
+print(salary)</div>
+</div>
+
+<div class="assignment">
+  <span class="badge">Assignment 5 — Selection Sort</span>
+  <h2>Find Top Scores Using Descending Selection Sort</h2>
+  <div class="section"><b>Problem:</b><br>A game leaderboard should show the highest score first.</div>
+  <div class="section"><b>Sample Input:</b><br>[150, 320, 210, 450, 275]</div>
+  <div class="section"><b>Task:</b><br>Modify Selection Sort to select the maximum value on each pass.</div>
+  <div class="section expected"><b>Expected Output:</b><br>[450, 320, 275, 210, 150]</div>
+  <button class="hintBtn" onclick="toggle('h5')">Show Hint</button>
+  <button class="solBtn" onclick="toggle('s5')">Show Solution</button>
+  <div id="h5" class="hidden section">Use <code>max_index</code> and compare using <code>&gt;</code>.</div>
+  <div id="s5" class="hidden code">scores = [150, 320, 210, 450, 275]
+
+for i in range(len(scores) - 1):
+    max_index = i
+
+    for j in range(i + 1, len(scores)):
+        if scores[j] > scores[max_index]:
+            max_index = j
+
+    scores[i], scores[max_index] = scores[max_index], scores[i]
+
+print(scores)</div>
+</div>
+
+<div class="assignment">
+  <span class="badge">Assignment 6 — Selection Sort</span>
+  <h2>Count the Number of Swaps</h2>
+  <div class="section"><b>Problem:</b><br>You want to understand how many swaps Selection Sort performs.</div>
+  <div class="section"><b>Sample Input:</b><br>[64, 25, 12, 22, 11]</div>
+  <div class="section"><b>Task:</b><br>Sort the list and also print the total number of actual swaps.</div>
+  <div class="section expected"><b>Expected Sorted Output:</b><br>[11, 12, 22, 25, 64]</div>
+  <button class="hintBtn" onclick="toggle('h6')">Show Hint</button>
+  <button class="solBtn" onclick="toggle('s6')">Show Solution</button>
+  <div id="h6" class="hidden section">Increase the counter only when <code>min_index != i</code>.</div>
+  <div id="s6" class="hidden code">data = [64, 25, 12, 22, 11]
+swap_count = 0
+
+for i in range(len(data) - 1):
+    min_index = i
+
+    for j in range(i + 1, len(data)):
+        if data[j] < data[min_index]:
+            min_index = j
+
+    if min_index != i:
+        data[i], data[min_index] = data[min_index], data[i]
+        swap_count += 1
+
+print("Sorted:", data)
+print("Swaps:", swap_count)</div>
+</div>
+
+<div class="assignment">
+  <span class="badge">Assignment 7 — Insertion Sort</span>
+  <h2>Sort Student Ages</h2>
+  <div class="section"><b>Problem:</b><br>Arrange student ages from youngest to oldest.</div>
+  <div class="section"><b>Sample Input:</b><br>[22, 18, 25, 19, 21]</div>
+  <div class="section"><b>Task:</b><br>Use Insertion Sort with <code>key</code> and shifting.</div>
+  <div class="section expected"><b>Expected Output:</b><br>[18, 19, 21, 22, 25]</div>
+  <button class="hintBtn" onclick="toggle('h7')">Show Hint</button>
+  <button class="solBtn" onclick="toggle('s7')">Show Solution</button>
+  <div id="h7" class="hidden section">Store the current element in <code>key</code> before shifting values.</div>
+  <div id="s7" class="hidden code">ages = [22, 18, 25, 19, 21]
+
+for i in range(1, len(ages)):
+    key = ages[i]
+    j = i - 1
+
+    while j >= 0 and ages[j] > key:
+        ages[j + 1] = ages[j]
+        j -= 1
+
+    ages[j + 1] = key
+
+print(ages)</div>
+</div>
+
+<div class="assignment">
+  <span class="badge">Assignment 8 — Insertion Sort</span>
+  <h2>Sort Delivery Times</h2>
+  <div class="section"><b>Problem:</b><br>A logistics system wants shorter delivery times first.</div>
+  <div class="section"><b>Sample Input:</b><br>[42, 18, 35, 27, 50, 22]</div>
+  <div class="section"><b>Task:</b><br>Sort delivery times using Insertion Sort.</div>
+  <div class="section expected"><b>Expected Output:</b><br>[18, 22, 27, 35, 42, 50]</div>
+  <button class="hintBtn" onclick="toggle('h8')">Show Hint</button>
+  <button class="solBtn" onclick="toggle('s8')">Show Solution</button>
+  <div id="h8" class="hidden section">Move every value greater than the key one position to the right.</div>
+  <div id="s8" class="hidden code">times = [42, 18, 35, 27, 50, 22]
+
+for i in range(1, len(times)):
+    key = times[i]
+    j = i - 1
+
+    while j >= 0 and times[j] > key:
+        times[j + 1] = times[j]
+        j -= 1
+
+    times[j + 1] = key
+
+print(times)</div>
+</div>
+
+<div class="assignment">
+  <span class="badge">Assignment 9 — Insertion Sort</span>
+  <h2>Descending Insertion Sort</h2>
+  <div class="section"><b>Problem:</b><br>Arrange sales values from highest to lowest.</div>
+  <div class="section"><b>Sample Input:</b><br>[1200, 900, 1500, 700, 1300]</div>
+  <div class="section"><b>Task:</b><br>Modify Insertion Sort for descending order.</div>
+  <div class="section expected"><b>Expected Output:</b><br>[1500, 1300, 1200, 900, 700]</div>
+  <button class="hintBtn" onclick="toggle('h9')">Show Hint</button>
+  <button class="solBtn" onclick="toggle('s9')">Show Solution</button>
+  <div id="h9" class="hidden section">For descending order, shift while the left value is smaller than the key.</div>
+  <div id="s9" class="hidden code">sales = [1200, 900, 1500, 700, 1300]
+
+for i in range(1, len(sales)):
+    key = sales[i]
+    j = i - 1
+
+    while j >= 0 and sales[j] < key:
+        sales[j + 1] = sales[j]
+        j -= 1
+
+    sales[j + 1] = key
+
+print(sales)</div>
+</div>
+
+<div class="assignment">
+  <span class="badge">Assignment 10 — Mixed Challenge</span>
+  <h2>Compare All Three Sorting Algorithms</h2>
+  <div class="section"><b>Problem:</b><br>Use the same list with Bubble Sort, Selection Sort, and Insertion Sort.</div>
+  <div class="section"><b>Sample Input:</b><br>[9, 4, 7, 2, 8, 1]</div>
+  <div class="section"><b>Task:</b>
+    <ul>
+      <li>Sort the list using Bubble Sort.</li>
+      <li>Sort the same list using Selection Sort.</li>
+      <li>Sort the same list using Insertion Sort.</li>
+      <li>Print all three results.</li>
+      <li>Write one sentence explaining the main difference between them.</li>
+    </ul>
+  </div>
+  <div class="section expected"><b>Expected Output:</b><br>[1, 2, 4, 7, 8, 9]</div>
+  <button class="hintBtn" onclick="toggle('h10')">Show Hint</button>
+  <button class="solBtn" onclick="toggle('s10')">Show Solution</button>
+  <div id="h10" class="hidden section">Use three separate copies of the same original list.</div>
+  <div id="s10" class="hidden code">original = [9, 4, 7, 2, 8, 1]
+
+# Bubble Sort
+bubble = original.copy()
+for i in range(len(bubble) - 1):
+    for j in range(len(bubble) - 1 - i):
+        if bubble[j] > bubble[j + 1]:
+            bubble[j], bubble[j + 1] = bubble[j + 1], bubble[j]
+
+# Selection Sort
+selection = original.copy()
+for i in range(len(selection) - 1):
+    min_index = i
+    for j in range(i + 1, len(selection)):
+        if selection[j] < selection[min_index]:
+            min_index = j
+    selection[i], selection[min_index] = selection[min_index], selection[i]
+
+# Insertion Sort
+insertion = original.copy()
+for i in range(1, len(insertion)):
+    key = insertion[i]
+    j = i - 1
+    while j >= 0 and insertion[j] > key:
+        insertion[j + 1] = insertion[j]
+        j -= 1
+    insertion[j + 1] = key
+
+print("Bubble:", bubble)
+print("Selection:", selection)
+print("Insertion:", insertion)</div>
+</div>
+
+</main>
+
+<script>
+function toggle(id){
+  const el=document.getElementById(id);
+  el.style.display = el.style.display === 'block' ? 'none' : 'block';
+}
+</script>
+</body>
+</html>
